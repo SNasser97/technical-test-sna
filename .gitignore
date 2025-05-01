@@ -64,3 +64,6 @@ obj/
 
 #
 /.vs/*
+
+# ReqnRoll
+*.feature.cs
