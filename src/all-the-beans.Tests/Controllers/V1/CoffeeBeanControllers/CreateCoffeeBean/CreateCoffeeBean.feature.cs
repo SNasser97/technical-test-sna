@@ -135,28 +135,113 @@ this.ScenarioInitialize(scenarioInfo);
  await testRunner.AndAsync("the request body contains a valid Description", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 10
- await testRunner.WhenAsync("a POST request is made", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+ await testRunner.AndAsync("the request body contains a valid Image", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 11
- await testRunner.ThenAsync("the response was 201 Created", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+ await testRunner.WhenAsync("a POST request is made", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 12
- await testRunner.AndAsync("the new CoffeeBean was created", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+ await testRunner.ThenAsync("the response was 201 Created", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
 #line 13
- await testRunner.AndAsync("the new CoffeeBean Name matches the request body field Name", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+ await testRunner.AndAsync("the new CoffeeBean was created", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 14
- await testRunner.AndAsync("the new CoffeeBean Country matches the request body field Country", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+ await testRunner.AndAsync("the new CoffeeBean Name matches the request body field Name", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 15
- await testRunner.AndAsync("the new CoffeeBean Colour matches the request body field Colour", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+ await testRunner.AndAsync("the new CoffeeBean Country matches the request body field Country", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 16
- await testRunner.AndAsync("the new CoffeeBean Cost matches the request body field Cost", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+ await testRunner.AndAsync("the new CoffeeBean Colour matches the request body field Colour", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 17
+ await testRunner.AndAsync("the new CoffeeBean Cost matches the request body field Cost", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 18
  await testRunner.AndAsync("the new CoffeeBean Description matches the request body field Description", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Request Failure - All Mandatory Fields Not Supplied - 400 Bad Request")]
+        public async global::System.Threading.Tasks.Task RequestFailure_AllMandatoryFieldsNotSupplied_400BadRequest()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Request Failure - All Mandatory Fields Not Supplied - 400 Bad Request", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 21
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 22
+ await testRunner.GivenAsync("the request body contains an invalid Name", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 23
+ await testRunner.AndAsync("the request body contains an invalid Country", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 24
+ await testRunner.AndAsync("the request body contains an invalid Colour", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 25
+ await testRunner.AndAsync("the request body contains an invalid Cost", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 26
+ await testRunner.AndAsync("the request body contains an invalid Description", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 27
+ await testRunner.AndAsync("the request body contains an invalid Image", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 28
+ await testRunner.WhenAsync("a POST request is made", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 29
+ await testRunner.ThenAsync("the response was 400 Bad Request", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Request Failure - Mandatory Field Not Supplied - 400 Bad Request")]
+        [NUnit.Framework.TestCaseAttribute("Name", null)]
+        [NUnit.Framework.TestCaseAttribute("Country", null)]
+        [NUnit.Framework.TestCaseAttribute("Colour", null)]
+        [NUnit.Framework.TestCaseAttribute("Cost", null)]
+        [NUnit.Framework.TestCaseAttribute("Description", null)]
+        [NUnit.Framework.TestCaseAttribute("Image", null)]
+        public async global::System.Threading.Tasks.Task RequestFailure_MandatoryFieldNotSupplied_400BadRequest(string requestBodyField, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("requestBodyField", requestBodyField);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Request Failure - Mandatory Field Not Supplied - 400 Bad Request", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 31
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 32
+ await testRunner.GivenAsync(string.Format("the request body is valid except the {0} has an invalid value", requestBodyField), ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 33
+ await testRunner.WhenAsync("a POST request is made", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 34
+ await testRunner.ThenAsync("the response was 400 Bad Request", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
