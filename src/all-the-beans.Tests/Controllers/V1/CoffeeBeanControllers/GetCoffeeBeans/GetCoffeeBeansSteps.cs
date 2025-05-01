@@ -5,13 +5,10 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.GetCoffeeBean
 {
     [Binding]
     [Scope(Feature ="V1 - GetCoffeeBeans")]
-    internal class GetCofeeBeansSteps : CommonCoffeeBeanSteps
+    internal class GetCoffeeBeansSteps : CommonCoffeeBeanSteps<GetCoffeeBeansScenarios>
     {
-        private readonly GetCoffeeBeansScenarios scenarios;
-
-        public GetCofeeBeansSteps(GetCoffeeBeansScenarios scenarios)
+        public GetCoffeeBeansSteps(GetCoffeeBeansScenarios scenarios) : base(scenarios)
         {
-            this.scenarios = scenarios;
         }
 
         [Given("the request url contains query parameter (.*) with value (.*)")]
