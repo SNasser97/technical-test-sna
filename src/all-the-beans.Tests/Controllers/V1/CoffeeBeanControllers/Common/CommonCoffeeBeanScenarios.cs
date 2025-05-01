@@ -91,16 +91,6 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
             }
         }
 
-        private object GenerateTestData(string condition, object testData)
-        {
-            return condition switch
-            {
-                "a valid" => testData,
-                "an invalid" => "",
-                _ => throw new ArgumentOutOfRangeException($"Unknown condition: {condition}")
-            };
-        }
-
         public async Task SendRequestAsync(string httpAction)
         {
             if (httpAction.Equals("POST", StringComparison.OrdinalIgnoreCase))
@@ -113,6 +103,16 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
                 Console.WriteLine($"DEBUG: {JsonSerializer.Serialize(this.Response)}");
                 Console.WriteLine($"DEBUG Content: {JsonSerializer.Serialize(await this.Response.Content.ReadAsStringAsync())}");
             }
+        }
+
+        private object GenerateTestData(string condition, object testData)
+        {
+            return condition switch
+            {
+                "a valid" => testData,
+                "an invalid" => "",
+                _ => throw new ArgumentOutOfRangeException($"Unknown condition: {condition}")
+            };
         }
     }
 }
