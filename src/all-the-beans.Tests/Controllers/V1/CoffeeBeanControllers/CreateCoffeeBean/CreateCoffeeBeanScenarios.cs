@@ -10,7 +10,7 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.CreateCoffeeB
             var jsonPayload = JsonSerializer.Serialize(this.RequestBody);
             var content = new StringContent(jsonPayload, System.Text.Encoding.UTF8, "application/json");
 
-            this.Response = await this._httpClient.PostAsync(endpointUrl, content);
+            this.Response = await Setup.httpClient.PostAsync(endpointUrl, content);
 
             Console.WriteLine($"DEBUG: {JsonSerializer.Serialize(this.Response)}");
             Console.WriteLine($"DEBUG Content: {JsonSerializer.Serialize(await this.Response.Content.ReadAsStringAsync())}");

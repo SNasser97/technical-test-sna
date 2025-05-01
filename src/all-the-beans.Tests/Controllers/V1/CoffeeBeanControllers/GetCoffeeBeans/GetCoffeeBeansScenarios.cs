@@ -1,4 +1,5 @@
 ﻿using all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common;
+using System.Text.Json;
 
 namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.GetCoffeeBeans
 {
@@ -6,7 +7,10 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.GetCoffeeBean
     {
         protected override async Task OnSendRequestAsync(string httpAction)
         {
-            await Task.CompletedTask;
+            this.Response = await Setup.httpClient.GetAsync(endpointUrl);
+
+            Console.WriteLine($"DEBUG: {JsonSerializer.Serialize(this.Response)}");
+            Console.WriteLine($"DEBUG Content: {JsonSerializer.Serialize(await this.Response.Content.ReadAsStringAsync())}");
         }
     }
 }

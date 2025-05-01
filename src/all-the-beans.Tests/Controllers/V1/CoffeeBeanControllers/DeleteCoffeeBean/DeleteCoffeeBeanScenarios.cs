@@ -7,7 +7,7 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.DeleteCoffeeB
     {
         protected override async Task OnSendRequestAsync(string httpAction)
         {
-            this.Response = await this._httpClient.DeleteAsync(endpointUrl);
+            this.Response = await Setup.httpClient.DeleteAsync(this.RequestUrl);
 
             Console.WriteLine($"DEBUG: {JsonSerializer.Serialize(this.Response)}");
             Console.WriteLine($"DEBUG Content: {JsonSerializer.Serialize(await this.Response.Content.ReadAsStringAsync())}");
