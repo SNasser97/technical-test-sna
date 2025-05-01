@@ -1,5 +1,6 @@
 ﻿using all_the_beans.Entities.Commands.V1.CoffeeBean.CreateCoffeeBeanCommand;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace all_the_beans.Api.Controllers.V1.CoffeeBean.CreateCoffeeBean
 {
@@ -20,7 +21,7 @@ namespace all_the_beans.Api.Controllers.V1.CoffeeBean.CreateCoffeeBean
         [HttpPost]
         public async Task<IActionResult> PostAsync(CreateCoffeeBeanControllerRequest request)
         {
-            return await Task.FromResult(Ok("created."));
+            return await Task.FromResult(StatusCode(201, "Created"));
         }
     }
 }
