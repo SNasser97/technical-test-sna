@@ -9,57 +9,18 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
 {
     internal abstract class CommonCoffeeBeanScenarios
     {
-        private MySqlContainer _dbContainer;
-        private WebApplicationFactory<Program> _factory;
-        protected HttpClient _httpClient;
-
-        private const string hostUrl = "http://localhost:5053";
         public const string endpointUrl = "/v1/api/coffeebeans";
+        public HttpResponseMessage Response;
 
         protected IDictionary<string, object> RequestBody = new Dictionary<string, object>();
-        public HttpResponseMessage Response;
         
-        public async Task SetupAsync()
-        {
-            // Initialize MySQL Testcontainer
-            this._dbContainer = new MySqlBuilder()
-                .WithDatabase("testdb")
-                .WithUsername("testuser")
-                .WithPassword("testpassword")
-                .Build();
-
-            await _dbContainer.StartAsync();
-
-            // Initialize WebApplicationFactory
-            this._factory = new WebApplicationFactory<Program>()
-                .WithWebHostBuilder(builder =>
-                {
-                    builder.ConfigureServices(services =>
-                    {
-                        // Replace DbContext with one pointing to the Testcontainer
-                        var serviceDescriptor = services.SingleOrDefault(
-                            d => d.ServiceType == typeof(DbContextOptions<CoffeeBeanDbContext>));
-                        if (serviceDescriptor != null)
-                        {
-                            services.Remove(serviceDescriptor);
-                        }
-                        
-                        services.AddDbContext<CoffeeBeanDbContext>(options =>
-                            options.UseMySql(_dbContainer.GetConnectionString(), ServerVersion.AutoDetect(this._dbContainer.GetConnectionString())));
-                    });
-                });
-
-            //// Create HttpClient for API requests
-            this._httpClient = this._factory.CreateClient();
-            this._httpClient.BaseAddress = new Uri(hostUrl);
-        }
+        public string RequestUrl { get; set; } = endpointUrl;
 
         public async Task CleanupAsync()
         {
             // Dispose of the Testcontainer and WebApplicationFactory
-            await _dbContainer.DisposeAsync();
-            this._factory.Dispose();
-            this._httpClient.Dispose();
+            this.Response.Dispose();
+            await Task.CompletedTask;
         }
 
         public void SetupRequestBody(string condition, string fieldName)

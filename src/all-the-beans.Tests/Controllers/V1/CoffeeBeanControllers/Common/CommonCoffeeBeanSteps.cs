@@ -12,12 +12,6 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
             this.scenarios = scenarios;
         }
 
-        [BeforeScenario]
-        public async Task Before()
-        {
-            await this.scenarios.SetupAsync();
-        }
-
         [AfterScenario]
         public async Task After()
         {
@@ -33,6 +27,10 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
         [Given("the request url contains (.*) field with (.*)")]
         public void GivenTheRequestUrlContainsFieldWithValue(string requestUrlField, string value)
         {
+            if (requestUrlField == "Id")
+            {
+                this.scenarios.RequestUrl += $"/{value}";
+            }
         }
 
         [Given("the request body is valid except the (.*) has (.*) value")]
@@ -69,11 +67,13 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
         [Then("the response was (.*) OK")]
         public void ThenTheResponseWasOK(int statusCode)
         {
+            Assert.AreEqual(statusCode, (int)this.scenarios.Response.StatusCode, "Status code does not match expected value.");
         }
 
         [Then("the response was (.*) NoContent")]
         public void ThenTheResponseWasNoContent(int statusCode)
         {
+            Assert.AreEqual(statusCode, (int)this.scenarios.Response.StatusCode, "Status code does not match expected value.");
         }
 
         [Then("the response was (.*) Bad Request")]
