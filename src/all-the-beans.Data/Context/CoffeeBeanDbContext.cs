@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace all_the_beans.Data.Context
 {
-    internal class CoffeeBeanContext : DbContext
+    public class CoffeeBeanDbContext : DbContext
     {
         public DbSet<CoffeeBean> CoffeeBean { get; set; }
 
-        public CoffeeBeanContext(DbContextOptions<CoffeeBeanContext> options) : base(options) { }
+        public CoffeeBeanDbContext(DbContextOptions<CoffeeBeanDbContext> options) : base(options) { }
     }
 }
