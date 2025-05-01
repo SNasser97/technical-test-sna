@@ -4,8 +4,8 @@
     <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>all_the_beans.Tests</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-
+    <Nullable>disable</Nullable>
+	<NoWarn>NUnit2005</NoWarn>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
