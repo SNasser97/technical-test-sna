@@ -5,13 +5,10 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.DeleteCoffeeB
 {
     [Binding]
     [Scope(Feature ="V1 - DeleteCoffeeBean")]
-    internal class DeleteCoffeeBeanSteps : CommonCoffeeBeanSteps
+    internal class DeleteCoffeeBeanSteps : CommonCoffeeBeanSteps<DeleteCoffeeBeanScenarios>
     {
-        private readonly DeleteCoffeeBeanScenarios scenarios;
-
-        public DeleteCoffeeBeanSteps(DeleteCoffeeBeanScenarios scenarios)
+        public DeleteCoffeeBeanSteps(DeleteCoffeeBeanScenarios scenarios) : base(scenarios)
         {
-            this.scenarios = scenarios;
         }
 
         [Then("the CoffeeBean with Id (.*) (was|was not) deleted")]
