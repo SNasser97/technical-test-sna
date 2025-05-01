@@ -4,12 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using Testcontainers.MySql;
 using all_the_beans.Data.Context;
 using Microsoft.Extensions.DependencyInjection;
-using System.Text.Json;
-using Reqnroll;
 
 namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
 {
-    internal class CommonCoffeeBeanScenarios
+    internal abstract class CommonCoffeeBeanScenarios
     {
         private MySqlContainer _dbContainer;
         private WebApplicationFactory<Program> _factory;
@@ -55,6 +53,7 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
             this._httpClient = this._factory.CreateClient();
             this._httpClient.BaseAddress = new Uri(hostUrl);
         }
+
         public async Task CleanupAsync()
         {
             // Dispose of the Testcontainer and WebApplicationFactory
@@ -93,16 +92,7 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
 
         public async Task SendRequestAsync(string httpAction)
         {
-            if (httpAction.Equals("POST", StringComparison.OrdinalIgnoreCase))
-            {
-                var jsonPayload = JsonSerializer.Serialize(this.RequestBody);
-                var content = new StringContent(jsonPayload, System.Text.Encoding.UTF8, "application/json");
-
-                this.Response = await this._httpClient.PostAsync(endpointUrl, content);
-
-                Console.WriteLine($"DEBUG: {JsonSerializer.Serialize(this.Response)}");
-                Console.WriteLine($"DEBUG Content: {JsonSerializer.Serialize(await this.Response.Content.ReadAsStringAsync())}");
-            }
+            await this.OnSendRequestAsync(httpAction);
         }
 
         private object GenerateTestData(string condition, object testData)
@@ -114,5 +104,7 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
                 _ => throw new ArgumentOutOfRangeException($"Unknown condition: {condition}")
             };
         }
+
+        protected abstract Task OnSendRequestAsync(string httpAction);
     }
 }

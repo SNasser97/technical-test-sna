@@ -4,5 +4,9 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.GetCoffeeBean
 {
     internal class GetCoffeeBeansScenarios : CommonCoffeeBeanScenarios
     {
+        protected override async Task OnSendRequestAsync(string httpAction)
+        {
+            await Task.CompletedTask;
+        }
     }
 }

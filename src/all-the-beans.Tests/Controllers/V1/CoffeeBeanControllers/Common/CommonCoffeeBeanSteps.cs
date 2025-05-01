@@ -1,6 +1,5 @@
 ﻿using Reqnroll;
 
-
 namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
 {
     internal class CommonCoffeeBeanSteps<TScenario>
@@ -60,7 +59,6 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
         {
             await scenarios.SendRequestAsync(httpAction);
         }
-
 
         [Then("the response was (.*) Created")]
         public void ThenTheResponseWasCreated(int statusCode)
