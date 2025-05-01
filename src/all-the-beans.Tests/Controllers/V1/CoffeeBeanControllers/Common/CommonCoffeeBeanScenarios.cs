@@ -18,9 +18,9 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
         private const string hostUrl = "http://localhost:5053";
         public const string endpointUrl = "/v1/api/coffeebeans";
 
-        public IDictionary<string, object> RequestBody = new Dictionary<string, object>();
+        protected IDictionary<string, object> RequestBody = new Dictionary<string, object>();
         public HttpResponseMessage Response;
-
+        
         public async Task SetupAsync()
         {
             // Initialize MySQL Testcontainer
@@ -55,7 +55,6 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
             this._httpClient = this._factory.CreateClient();
             this._httpClient.BaseAddress = new Uri(hostUrl);
         }
-
         public async Task CleanupAsync()
         {
             // Dispose of the Testcontainer and WebApplicationFactory
@@ -70,22 +69,22 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
             switch (fieldName)
             {
                 case "Name":
-                    RequestBody["Name"] = this.GenerateTestData(condition, "Test Data");
+                    this.RequestBody["Name"] = this.GenerateTestData(condition, "Test Data");
                     break;
                 case "Country":
-                    RequestBody["Country"] = this.GenerateTestData(condition, "Test Country");
+                    this.RequestBody["Country"] = this.GenerateTestData(condition, "Test Country");
                     break;
                 case "Colour":
-                    RequestBody["Colour"] = this.GenerateTestData(condition, "Test Colour");
+                    this.RequestBody["Colour"] = this.GenerateTestData(condition, "Test Colour");
                     break;
                 case "Cost":
-                    RequestBody["Cost"] = this.GenerateTestData(condition, 10.99m);
+                    this.RequestBody["Cost"] = this.GenerateTestData(condition, 10.99m);
                     break;
                 case "Description":
-                    RequestBody["Description"] = this.GenerateTestData(condition, "Test Description");
+                    this.RequestBody["Description"] = this.GenerateTestData(condition, "Test Description");
                     break;
                 case "Image":
-                    RequestBody["Image"] = this.GenerateTestData(condition, "http://image-example.com");
+                    this.RequestBody["Image"] = this.GenerateTestData(condition, "http://image-example.com");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException($"Unknown fieldName: {fieldName}");
@@ -107,9 +106,9 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
             if (httpAction.Equals("POST", StringComparison.OrdinalIgnoreCase))
             {
                 var jsonPayload = JsonSerializer.Serialize(this.RequestBody);
-                Response = await this._httpClient.PostAsync(endpointUrl, new StringContent(JsonSerializer.Serialize(this.RequestBody), System.Text.Encoding.UTF8, "application/json"));
-                Console.WriteLine($"DEBUG: {JsonSerializer.Serialize(Response)}");
-                Console.WriteLine($"DEBUG Content: {JsonSerializer.Serialize(await Response.Content.ReadAsStringAsync())}");
+                this.Response = await this._httpClient.PostAsync(endpointUrl, new StringContent(JsonSerializer.Serialize(this.RequestBody), System.Text.Encoding.UTF8, "application/json"));
+                Console.WriteLine($"DEBUG: {JsonSerializer.Serialize(this.Response)}");
+                Console.WriteLine($"DEBUG Content: {JsonSerializer.Serialize(await this.Response.Content.ReadAsStringAsync())}");
             }
         }
     }
