@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>all_the_beans.Api</RootNamespace>
+	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+	  <!-- Optional: Disable warnings for missing XML doc comments -->
+	  <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.11" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\all-the-beans.Entities\all-the-beans.Entities.csproj" />
+    <ProjectReference Include="..\all-the-beans.Logic\all-the-beans.Logic.csproj" />
+  </ItemGroup>
+	
+    
+</Project>

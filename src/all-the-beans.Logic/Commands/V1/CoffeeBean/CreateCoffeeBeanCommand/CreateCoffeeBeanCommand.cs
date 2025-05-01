@@ -1,0 +1,12 @@
+﻿using all_the_beans.Entities.Commands.V1.CoffeeBean.CreateCoffeeBeanCommand;
+
+namespace all_the_beans.Logic.Commands.V1.CoffeeBean.CreateCoffeeBeanCommand
+{
+    internal class CreateCoffeeBeanCommand : ICreateCoffeeBeanCommand
+    {
+        public Task ExecuteAsync(CreateCoffeeBeanCommandRequest request)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
