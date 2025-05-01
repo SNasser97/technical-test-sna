@@ -9,6 +9,7 @@ Scenario: Request Successful - CoffeeBean Created - 200 OK
 	And the request body contains a valid Colour
 	And the request body contains a valid Cost
 	And the request body contains a valid Description
+	And the request body contains a valid Image
 	When a PUT request is made
 	Then the response was 200 OK
 	And the CoffeeBean was updated
@@ -17,6 +18,7 @@ Scenario: Request Successful - CoffeeBean Created - 200 OK
 	And the updated CoffeeBean Colour matches the request body field Colour
 	And the updated CoffeeBean Cost matches the request body field Cost
 	And the updated CoffeeBean Description matches the request body field Description
+	And the updated CoffeeBean Image matches the request body field Image
 
 	Examples: 
 	| coffee-bean-update-Id         |

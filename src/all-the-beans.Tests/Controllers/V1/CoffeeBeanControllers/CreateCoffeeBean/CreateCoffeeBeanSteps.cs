@@ -1,16 +1,14 @@
-﻿using Reqnroll;
+﻿using all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common;
+using Reqnroll;
 
 namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.CreateCoffeeBean
 {
     [Binding]
     [Scope(Feature = "V1 - CreateCoffeeBean")]
-    internal class CreateCoffeeBeanSteps
+    internal class CreateCoffeeBeanSteps : CommonCoffeeBeanSteps<CreateCoffeeBeanScenarios>
     {
-        private readonly CreateCoffeeBeanScenarios scenarios;
-
-        public CreateCoffeeBeanSteps(CreateCoffeeBeanScenarios scenarios)
+        public CreateCoffeeBeanSteps(CreateCoffeeBeanScenarios scenarios) : base(scenarios)
         {
-            this.scenarios = scenarios;
         }
 
         [Then("the new CoffeeBean was created")]

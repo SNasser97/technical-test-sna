@@ -5,13 +5,10 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.UpdateCoffeeB
 {
     [Binding]
     [Scope(Feature = "V1 - UpdateCoffeeBean")]
-    internal class UpdateCoffeeBeanSteps : CommonCoffeeBeanSteps
+    internal class UpdateCoffeeBeanSteps : CommonCoffeeBeanSteps<UpdateCoffeeBeanScenarios>
     {
-        private readonly UpdateCoffeeBeanScenarios scenarios;
-
-        public UpdateCoffeeBeanSteps(UpdateCoffeeBeanScenarios scenarios)
+        public UpdateCoffeeBeanSteps(UpdateCoffeeBeanScenarios scenarios) : base(scenarios)
         {
-            this.scenarios = scenarios;
         }
 
         [Then("the CoffeeBean was updated")]
