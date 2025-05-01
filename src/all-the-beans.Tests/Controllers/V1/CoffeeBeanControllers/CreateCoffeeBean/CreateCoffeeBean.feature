@@ -16,6 +16,7 @@ Scenario: Request Successful - CoffeeBean Created - 201 Created
 	And the new CoffeeBean Colour matches the request body field Colour
 	And the new CoffeeBean Cost matches the request body field Cost
 	And the new CoffeeBean Description matches the request body field Description
+	And the new CoffeeBean Image matches the request body field Image
 
 # Negative Scenarios - Request Body Validation 
 Scenario: Request Failure - All Mandatory Fields Not Supplied - 400 Bad Request
