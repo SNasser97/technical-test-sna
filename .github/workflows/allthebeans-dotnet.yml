@@ -34,4 +34,4 @@ jobs:
       # Step 5: Run tests (including .feature scenarios)
       # Skips build as Step 4. covers this
       - name: Run tests
-        run: dotnet test --no-build --configuration Release"
+        run: dotnet test --no-build --configuration Release
