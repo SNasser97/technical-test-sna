@@ -5,9 +5,6 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>all_the_beans.Api</RootNamespace>
-	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
-	  <!-- Optional: Disable warnings for missing XML doc comments -->
-	  <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
