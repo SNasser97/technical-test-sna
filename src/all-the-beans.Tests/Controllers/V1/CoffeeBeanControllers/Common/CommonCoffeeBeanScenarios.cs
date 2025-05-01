@@ -19,7 +19,7 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
         public const string endpointUrl = "/v1/api/coffeebeans";
 
         public IDictionary<string, object> RequestBody = new Dictionary<string, object>();
-        public HttpResponseMessage? Response;
+        public HttpResponseMessage Response;
 
         public async Task SetupAsync()
         {
