@@ -106,7 +106,10 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
             if (httpAction.Equals("POST", StringComparison.OrdinalIgnoreCase))
             {
                 var jsonPayload = JsonSerializer.Serialize(this.RequestBody);
-                this.Response = await this._httpClient.PostAsync(endpointUrl, new StringContent(JsonSerializer.Serialize(this.RequestBody), System.Text.Encoding.UTF8, "application/json"));
+                var content = new StringContent(jsonPayload, System.Text.Encoding.UTF8, "application/json");
+
+                this.Response = await this._httpClient.PostAsync(endpointUrl, content);
+
                 Console.WriteLine($"DEBUG: {JsonSerializer.Serialize(this.Response)}");
                 Console.WriteLine($"DEBUG Content: {JsonSerializer.Serialize(await this.Response.Content.ReadAsStringAsync())}");
             }
