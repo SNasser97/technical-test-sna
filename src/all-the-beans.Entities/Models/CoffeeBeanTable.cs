@@ -1,6 +1,9 @@
-﻿namespace all_the_beans.Entities.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace all_the_beans.Entities.Models
 {
-    public class CoffeeBean
+    public class CoffeeBeanTable
     {
         /// <summary>
         /// The unique identifier of the coffee bean.
@@ -16,6 +19,13 @@
         /// The flag to determine the coffee bean of the day.
         /// </summary>
         public bool IsBeanOfTheDay { get; set; }
+
+        /// <summary>
+        /// The cost of the coffee bean.
+        /// NOTE: I've decided to represent this as a decimal as potentially we could need to perform some currency conversion for beans.
+        /// This is just some consideration/thought process.
+        /// </summary>
+        public decimal Cost { get; set; }
 
         /// <summary>
         /// The url image of the coffee bean.
