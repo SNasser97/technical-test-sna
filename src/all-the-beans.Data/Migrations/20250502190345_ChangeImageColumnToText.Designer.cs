@@ -11,8 +11,8 @@ using all_the_beans.Data.Context;
 namespace all_the_beans.Data.Migrations
 {
     [DbContext(typeof(CoffeeBeanDbContext))]
-    [Migration("20250502172238_addUniqueIndexToColumnIndex")]
-    partial class addUniqueIndexToColumnIndex
+    [Migration("20250502190345_ChangeImageColumnToText")]
+    partial class ChangeImageColumnToText
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,7 +46,7 @@ namespace all_the_beans.Data.Migrations
 
                     b.Property<string>("Image")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<int>("Index")
                         .ValueGeneratedOnAdd()

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using all_the_beans.Data.Context;
 
@@ -10,9 +11,11 @@ using all_the_beans.Data.Context;
 namespace all_the_beans.Data.Migrations
 {
     [DbContext(typeof(CoffeeBeanDbContext))]
-    partial class CoffeeBeanDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250502185814_AddPrimaryKeyAndAutoIncrementUnique")]
+    partial class AddPrimaryKeyAndAutoIncrementUnique
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,13 +46,10 @@ namespace all_the_beans.Data.Migrations
 
                     b.Property<string>("Image")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("Index")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Index"));
 
                     b.Property<bool>("IsBeanOfTheDay")
                         .HasColumnType("tinyint(1)");

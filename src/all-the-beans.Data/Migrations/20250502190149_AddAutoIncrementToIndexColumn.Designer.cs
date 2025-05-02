@@ -11,8 +11,8 @@ using all_the_beans.Data.Context;
 namespace all_the_beans.Data.Migrations
 {
     [DbContext(typeof(CoffeeBeanDbContext))]
-    [Migration("20250502171217_AddPrimaryKeyAndAutoIncrementUnique")]
-    partial class AddPrimaryKeyAndAutoIncrementUnique
+    [Migration("20250502190149_AddAutoIncrementToIndexColumn")]
+    partial class AddAutoIncrementToIndexColumn
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,7 +49,10 @@ namespace all_the_beans.Data.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<int>("Index")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Index"));
 
                     b.Property<bool>("IsBeanOfTheDay")
                         .HasColumnType("tinyint(1)");
