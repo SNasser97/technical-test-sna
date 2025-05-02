@@ -1,6 +1,6 @@
-﻿using all_the_beans.Entities.Commands.V1.CoffeeBean.CreateCoffeeBeanCommand;
-using all_the_beans.Entities.Commands.V1.CoffeeBean.DeleteCoffeeBeanCommand;
-using all_the_beans.Entities.Commands.V1.CoffeeBean.UpdateCoffeeBeanCommand;
+﻿using all_the_beans.Entities.Commands.V1.CoffeeBeanCommands.CreateCoffeeBeanCommand;
+using all_the_beans.Entities.Commands.V1.CoffeeBeanCommands.DeleteCoffeeBeanCommand;
+using all_the_beans.Entities.Commands.V1.CoffeeBeanCommands.UpdateCoffeeBeanCommand;
 using all_the_beans.Logic.Commands.V1.CoffeeBeanCommands.CreateCoffeeBeanCommand;
 using all_the_beans.Logic.Commands.V1.CoffeeBeanCommands.DeleteCoffeebeanCommand;
 using all_the_beans.Logic.Commands.V1.CoffeeBeanCommands.UpdateCoffeeBean;
