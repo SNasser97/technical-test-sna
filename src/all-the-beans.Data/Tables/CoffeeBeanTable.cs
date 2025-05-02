@@ -36,6 +36,7 @@ namespace all_the_beans.Data.Table.CoffeeBeanTable
         /// <summary>
         /// The url image of the coffee bean.
         /// </summary>
+        [Column(TypeName = "text")]
         public string Image { get; set; }
 
         /// <summary>
