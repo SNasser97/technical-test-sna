@@ -1,9 +1,9 @@
 ﻿using all_the_beans.Entities.Commands.V1.CoffeeBean.CreateCoffeeBeanCommand;
 using all_the_beans.Entities.Commands.V1.CoffeeBean.DeleteCoffeeBeanCommand;
 using all_the_beans.Entities.Commands.V1.CoffeeBean.UpdateCoffeeBeanCommand;
-using all_the_beans.Logic.Commands.V1.CoffeeBean.CreateCoffeeBeanCommand;
-using all_the_beans.Logic.Commands.V1.CoffeeBean.DeleteCoffeebeanCommand;
-using all_the_beans.Logic.Commands.V1.CoffeeBean.UpdateCoffeeBean;
+using all_the_beans.Logic.Commands.V1.CoffeeBeanCommands.CreateCoffeeBeanCommand;
+using all_the_beans.Logic.Commands.V1.CoffeeBeanCommands.DeleteCoffeebeanCommand;
+using all_the_beans.Logic.Commands.V1.CoffeeBeanCommands.UpdateCoffeeBean;
 using all_the_beans.Logic.Queries.V1.CoffeeBeanQueries.GetCoffeeBeansQuery;
 using Microsoft.Extensions.DependencyInjection;
 using all_the_beans.Entities.Queries.V1.GetCoffeeBeansQuery;

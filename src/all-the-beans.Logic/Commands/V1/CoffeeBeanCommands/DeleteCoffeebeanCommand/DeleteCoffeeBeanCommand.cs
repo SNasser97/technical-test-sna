@@ -1,6 +1,6 @@
 ﻿using all_the_beans.Entities.Commands.V1.CoffeeBean.DeleteCoffeeBeanCommand;
 
-namespace all_the_beans.Logic.Commands.V1.CoffeeBean.DeleteCoffeebeanCommand
+namespace all_the_beans.Logic.Commands.V1.CoffeeBeanCommands.DeleteCoffeebeanCommand
 {
     internal class DeleteCoffeeBeanCommand : IDeleteCoffeeBeanCommand
     {
