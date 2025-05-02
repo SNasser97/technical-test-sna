@@ -24,15 +24,15 @@ namespace all_the_beans.Data.Context
 
         public DbSet<CoffeeBeanTable> CoffeeBean { get; set; }
 
-        public CoffeeBeanDbContext(DbContextOptions<CoffeeBeanDbContext> options) : base(options) { }
+        public CoffeeBeanDbContext(DbContextOptions<CoffeeBeanDbContext> options) : base(options) 
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<CoffeeBeanTable>()
-                .HasIndex(b => b.Index)
-                .IsUnique();
-
-            // declare auto increment the Index property.
+            // NOTE: on first run comment out ValueGeneratedOnAdd (auto increment)
+            // Run another ef migration the second time to apply auto increment constraint
+            // This is because MySQL does not support auto increment on a non-primary key column
             modelBuilder.Entity<CoffeeBeanTable>()
                 .Property(b => b.Index)
                 .ValueGeneratedOnAdd();
