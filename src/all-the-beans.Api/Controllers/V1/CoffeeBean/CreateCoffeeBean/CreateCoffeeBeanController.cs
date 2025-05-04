@@ -21,6 +21,7 @@ namespace all_the_beans.Api.Controllers.V1.CoffeeBean.CreateCoffeeBean
         [HttpPost]
         public async Task<IActionResult> PostAsync(CreateCoffeeBeanControllerRequest request)
         {
+            await command.ExecuteAsync(CreateCoffeeBeanControllerRequest.ToCommandRequest(request));
             return await Task.FromResult(StatusCode(201, "Created"));
         }
     }
