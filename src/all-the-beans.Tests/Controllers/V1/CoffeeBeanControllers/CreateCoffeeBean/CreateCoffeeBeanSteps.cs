@@ -14,12 +14,13 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.CreateCoffeeB
         [Then("the new CoffeeBean was created")]
         public async Task ThenTheNewCoffeeBeanWasCreated()
         {
-            await Task.CompletedTask;
+            await this.scenarios.ValidateCoffeBeanWasCreatedAsync();
         }
 
         [Then("the new CoffeeBean (.*) matches the request body field (.*)")]
         public void ThenTheNewCoffeeBeanFieldMatchesTheRequestBodyField(string entityField, string requestBodyField)
         {
+            this.scenarios.ValidateCoffeeBeanRecord(entityField, requestBodyField);
         }
     }
 }
