@@ -1,4 +1,5 @@
 ﻿using all_the_beans.Data.Context;
+using all_the_beans.Data.Tables.CoffeeBeanTable;
 using all_the_beans.Entities.Entity.CoffeeBean;
 using all_the_beans.Entities.Repositories.CoffeeBeanRepository;
 
@@ -14,9 +15,11 @@ namespace all_the_beans.Data.Repositories.CoffeeBeanRepository
         }
 
         /// <inherit doc/>
-        public Task CreateAsync(CoffeeBean coffeeBean)
+        public async Task CreateAsync(CoffeeBean coffeeBean)
         {
-            throw new NotImplementedException();
+            CoffeeBeanTable coffeeBeanTable = CoffeeBeanTable.ToCoffeeBeanTable(coffeeBean);
+            await this.coffeeBeanDbContext.CoffeeBean.AddAsync(coffeeBeanTable);
+            await this.coffeeBeanDbContext.SaveChangesAsync();
         }
 
         /// <inherit doc/>
