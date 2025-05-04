@@ -1,9 +1,6 @@
-﻿using all_the_beans.Api;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.EntityFrameworkCore;
-using Testcontainers.MySql;
+﻿using Microsoft.EntityFrameworkCore;
 using all_the_beans.Data.Context;
-using Microsoft.Extensions.DependencyInjection;
+using all_the_beans.Tests.Extensions;
 
 namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
 {
@@ -20,7 +17,7 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
         {
             // Dispose of the Testcontainer and WebApplicationFactory
             this.Response.Dispose();
-            await Task.CompletedTask;
+            await this.ClearRecordsAsync();
         }
 
         public void SetupRequestBody(string condition, string fieldName)
@@ -64,6 +61,17 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
                 "an invalid" => "",
                 _ => throw new ArgumentOutOfRangeException($"Unknown condition: {condition}")
             };
+        }
+
+        private async Task ClearRecordsAsync()
+        {
+            // Clear test records per scenario
+            // Ensures clean state for each test
+            // We can spin up the container per scenario however the test execution per scenario will be slower and cause slow build times in github actions with more tests we add.
+            await Setup.factory.Services.PerformDbContextActionAsync<CoffeeBeanDbContext>(async (dbContext) =>
+            {
+                await dbContext.Database.ExecuteSqlRawAsync($"TRUNCATE TABLE {nameof(dbContext.CoffeeBean)}");
+            });
         }
 
         protected abstract Task OnSendRequestAsync(string httpAction);
