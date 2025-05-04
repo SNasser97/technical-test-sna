@@ -1,6 +1,7 @@
 ﻿using all_the_beans.Data.Context;
 using all_the_beans.Data.Tables.CoffeeBeanTable;
 using all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common;
+using all_the_beans.Tests.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -18,16 +19,14 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.CreateCoffeeB
             var content = new StringContent(jsonPayload, System.Text.Encoding.UTF8, "application/json");
 
             this.Response = await Setup.httpClient.PostAsync(endpointUrl, content);
-
         }
 
         public async Task ValidateCoffeBeanWasCreatedAsync()
         {
-            using (IServiceScope serviceScope = Setup.factory.Services.CreateScope())
+            await Setup.factory.Services.PerformDbContextActionAsync<CoffeeBeanDbContext>(async (dbContext) =>
             {
-                CoffeeBeanDbContext coffeeBeanDbContext = serviceScope.ServiceProvider.GetRequiredService<CoffeeBeanDbContext>();
-                this.CoffeeBeanTableRecord = await coffeeBeanDbContext.CoffeeBean.SingleOrDefaultAsync();
-            }
+                this.CoffeeBeanTableRecord = await dbContext.CoffeeBean.SingleOrDefaultAsync();
+            });
 
             Assert.IsNotNull(this.CoffeeBeanTableRecord);
         }
