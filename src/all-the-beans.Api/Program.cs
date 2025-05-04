@@ -9,7 +9,7 @@ namespace all_the_beans.Api
         {
             var host = CreateHostBuilder(args).Build();
 
-            host.RunCoffeeBeanDatabaseMigration();
+            await host.RunCoffeeBeanDatabaseMigrationAsync();
             host.Run();
         }
 
