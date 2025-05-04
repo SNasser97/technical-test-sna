@@ -9,7 +9,7 @@ using Testcontainers.MySql;
 namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
 {
     [Binding]
-    public class Setup
+    public sealed class Setup
     {
         public static MySqlContainer dbContainer;
         public static WebApplicationFactory<Program> factory;
