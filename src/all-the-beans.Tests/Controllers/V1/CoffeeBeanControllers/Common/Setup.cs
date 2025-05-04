@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Reqnroll;
-
 using Testcontainers.MySql;
 
 namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
@@ -48,6 +47,16 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
                             options.UseMySql(dbContainer.GetConnectionString(), ServerVersion.AutoDetect(dbContainer.GetConnectionString())));
                     });
                 });
+            
+            // Initialise database
+            using (IServiceScope serviceScope = factory.Services.CreateScope())
+            {
+                // Ensure the database is created and migrated
+                // This will run the migrations against the Testcontainer database
+                // This will be the same CoffeeBean Table structure as the local database
+                CoffeeBeanDbContext coffeeBeanDbContext = serviceScope.ServiceProvider.GetRequiredService<CoffeeBeanDbContext>();
+                await coffeeBeanDbContext.Database.MigrateAsync();
+            }
 
             httpClient = factory.CreateClient();
             httpClient.BaseAddress = new Uri(baseAddress);

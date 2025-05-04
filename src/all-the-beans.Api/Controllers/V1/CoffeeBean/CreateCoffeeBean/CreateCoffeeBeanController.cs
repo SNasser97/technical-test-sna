@@ -1,4 +1,4 @@
-﻿using all_the_beans.Entities.Commands.V1.CoffeeBean.CreateCoffeeBeanCommand;
+﻿using all_the_beans.Entities.Commands.V1.CoffeeBeanCommands.CreateCoffeeBeanCommand;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 

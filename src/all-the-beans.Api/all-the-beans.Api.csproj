@@ -8,11 +8,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Utilities\AllTheBeans.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Utilities\AllTheBeans.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.15">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\all-the-beans.Data\all-the-beans.Data.csproj" />
     <ProjectReference Include="..\all-the-beans.Entities\all-the-beans.Entities.csproj" />
     <ProjectReference Include="..\all-the-beans.Logic\all-the-beans.Logic.csproj" />
   </ItemGroup>

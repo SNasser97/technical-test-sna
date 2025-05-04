@@ -1,4 +1,4 @@
-﻿using all_the_beans.Entities.Models;
+﻿using all_the_beans.Entities.Entity.CoffeeBean;
 using all_the_beans.Entities.Repositories.CoffeeBeanRepository;
 
 namespace all_the_beans.Data.Repositories.CoffeeBeanRepository
