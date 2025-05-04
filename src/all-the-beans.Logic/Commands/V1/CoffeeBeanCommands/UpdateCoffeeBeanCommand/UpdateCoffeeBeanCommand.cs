@@ -4,7 +4,7 @@ namespace all_the_beans.Logic.Commands.V1.CoffeeBeanCommands.UpdateCoffeeBean
 {
     internal class UpdateCoffeeBeanCommand : IUpdateCoffeeBeanCommand
     {
-        public Task ExecuteAsync(UpdateCoffeeBeanCommandRequest request)
+        public Task<UpdateCoffeeBeanCommandResponse> ExecuteAsync(UpdateCoffeeBeanCommandRequest request)
         {
             throw new NotImplementedException();
         }
