@@ -1,6 +1,5 @@
 
-using all_the_beans.Data.Utilities;
-using all_the_beans.Entities.Utilities;
+using all_the_beans.Data.Extensions;
 
 namespace all_the_beans.Api
 {
@@ -10,10 +9,7 @@ namespace all_the_beans.Api
         {
             var host = CreateHostBuilder(args).Build();
 
-            var coffeeBeanReader = new CoffeeBeanReader();
-
-            IEnumerable<CoffeeBeanJson> coffeeBeanJsonCollection = coffeeBeanReader.GenerateCoffeeBeanFromJson();
-            
+            host.RunCoffeeBeanDatabaseMigration();
             host.Run();
         }
 
