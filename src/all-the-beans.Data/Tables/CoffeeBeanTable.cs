@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace all_the_beans.Data.Table.CoffeeBeanTable
+namespace all_the_beans.Data.Tables.CoffeeBeanTable
 {
     /// <summary>
     /// CoffeeBeanTable class represents the structure of the coffee bean table in the database.

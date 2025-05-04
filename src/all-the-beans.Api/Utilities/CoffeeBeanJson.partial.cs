@@ -1,4 +1,4 @@
-﻿using all_the_beans.Data.Table.CoffeeBeanTable;
+﻿using all_the_beans.Data.Tables.CoffeeBeanTable;
 
 namespace all_the_beans.Entities.Utilities
 {

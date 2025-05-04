@@ -1,4 +1,4 @@
-﻿using all_the_beans.Data.Table.CoffeeBeanTable;
+﻿using all_the_beans.Data.Tables.CoffeeBeanTable;
 using Microsoft.EntityFrameworkCore;
 
 namespace all_the_beans.Data.Context
