@@ -21,19 +21,29 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.GetCoffeeBean
             this.ResponseContent = JsonSerializer.Deserialize<IEnumerable<CoffeeBean>>(content);
         }
 
-        public async Task CreateCoffeeBeanRecordsAsync(int count)
+        public async Task CreateCoffeeBeanRecordsAsync(int count, string field=null, object value=null)
         {
             await Setup.factory.Services.PerformDbContextActionAsync<CoffeeBeanDbContext>(async (dbContext) =>
             {
-                var records = Enumerable.Range(0, count).Select(i => new CoffeeBeanTable
+                var records = Enumerable.Range(0, count).Select(i =>
                 {
-                    Id = CoffeeBeanHelper.GenerateId(Guid.NewGuid().ToString()),
-                    Name = $"Test Bean {i}",
-                    Country = $"Test Country {i}",
-                    Colour = $"Test Colour {i}",
-                    Cost = this.GenerateRandomCost(),
-                    Description = $"Test Description {i}",
-                    Image = $"http://image-example.com/{i}"
+                    var record = new CoffeeBeanTable
+                    {
+                        Id = CoffeeBeanHelper.GenerateId(Guid.NewGuid().ToString()),
+                        Name = $"Test Bean {i}",
+                        Country = $"Test Country {i}",
+                        Colour = $"Test Colour {i}",
+                        Cost = this.GenerateRandomCost(),
+                        Description = $"Test Description {i}",
+                        Image = $"http://image-example.com/{i}"
+                    };
+
+                    if (!string.IsNullOrWhiteSpace(field) && value is not null && record.GetType().GetProperties().Any(property => property.Name.Equals(field, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        record.GetType().GetProperty(field).SetValue(record, value);
+                    }
+
+                    return record;
                 });
 
                 await dbContext.CoffeeBean.AddRangeAsync(records);
