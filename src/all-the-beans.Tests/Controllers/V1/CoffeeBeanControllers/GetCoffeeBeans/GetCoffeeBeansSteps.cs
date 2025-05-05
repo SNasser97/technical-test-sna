@@ -19,12 +19,13 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.GetCoffeeBean
         [Given("(.*) CoffeeBeans exist")]
         public async Task GivenNumberOfCoffeeBeansExist(int count)
         {
-            await Task.CompletedTask;
+            await this.scenarios.CreateCoffeeBeanRecordsAsync(count);
         }
 
         [Then("the response contains (.*) items")]
         public void ThenTheResponseContainsNumberOfItems(int count)
         {
+            this.scenarios.ValidateResponseItemsAsync(count);
         }
     }
 }
