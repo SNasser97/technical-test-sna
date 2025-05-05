@@ -12,7 +12,7 @@ Scenario: Request Successful - CoffeeBean Created - 200 OK
 	And the request body contains a valid Image
 	When a PUT request is made
 	Then the response was 200 OK
-	And the CoffeeBean was updated
+	And the CoffeeBean was updated for Id <coffee-bean-update-Id>
 	And the updated CoffeeBean Name matches the request body field Name
 	And the updated CoffeeBean Country matches the request body field Country
 	And the updated CoffeeBean Colour matches the request body field Colour
