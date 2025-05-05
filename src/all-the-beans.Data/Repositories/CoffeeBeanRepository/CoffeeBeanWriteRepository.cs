@@ -26,14 +26,24 @@ namespace all_the_beans.Data.Repositories.CoffeeBeanRepository
         /// <inherit doc/>
         public async Task DeleteAsync(string id)
         {
-            await this.coffeeBeanDbContext.CoffeeBean.Where(coffeeBean => coffeeBean.Id == id)
+            await this.coffeeBeanDbContext.CoffeeBean.Where(coffeeBeanTable => coffeeBeanTable.Id == id)
                 .ExecuteDeleteAsync();
         }
 
         /// <inherit doc/>
-        public Task UpdateAsync(CoffeeBean coffeeBean)
+        public async Task UpdateAsync(CoffeeBean coffeeBean)
         {
-            throw new NotImplementedException();
+            // move to read logic, use read repository
+            // validate first if record exists, else null - 404 back to the controller
+            CoffeeBeanTable record = await this.coffeeBeanDbContext.CoffeeBean.FindAsync(coffeeBean.Id);
+            record.Name = coffeeBean.Name;
+            record.Description = coffeeBean.Description;
+            record.Cost = coffeeBean.Cost;
+            record.Country = coffeeBean.Country;
+            record.Colour = coffeeBean.Colour;
+            record.Image = coffeeBean.Image;
+
+            await this.coffeeBeanDbContext.SaveChangesAsync();
         }
     }
 }
