@@ -65,7 +65,6 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
             });
 
             httpClient = factory.CreateClient();
-            httpClient.BaseAddress = factory.Server.BaseAddress;
         }
 
         [AfterTestRun]
@@ -74,7 +73,6 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
             Console.WriteLine("Cleaning up test environment...");
             await dbContainer.DisposeAsync();
             factory.Dispose();
-            httpClient.Dispose();
         }
     }
 }

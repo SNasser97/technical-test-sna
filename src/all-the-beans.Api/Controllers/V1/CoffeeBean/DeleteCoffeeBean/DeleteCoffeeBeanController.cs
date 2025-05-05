@@ -21,6 +21,7 @@ namespace all_the_beans.Api.Controllers.V1.CoffeeBean.DeleteCoffeeBean
         [HttpDelete]
         public async Task<IActionResult> DeleteAsync(DeleteCoffeeBeanControllerRequest request)
         {
+            await this.command.ExecuteAsync(DeleteCoffeeBeanControllerRequest.ToCommandRequest(request));
             return await Task.FromResult(NoContent());
         }
     }

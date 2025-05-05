@@ -21,5 +21,5 @@ Scenario: Request Successful - CoffeeBean Created - 200 OK
 	And the updated CoffeeBean Image matches the request body field Image
 
 	Examples: 
-	| coffee-bean-update-Id         |
-	| e99a18c428cb38d5f260853678922 |
+	| coffee-bean-update-Id    |
+	| d41d8cd98f00b204e9800998 |

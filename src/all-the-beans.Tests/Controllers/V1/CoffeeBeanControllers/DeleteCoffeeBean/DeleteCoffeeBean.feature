@@ -11,5 +11,18 @@ Scenario Outline: Request Successful - CoffeeBean Deleted - 204 No Content
 	And the CoffeeBean with Id <coffeebean-not-to-delete-Id> was not deleted
 
 	Examples:
-	| coffeebean-to-delete-Id		| coffeebean-not-to-delete-Id	|
-	| 1a79a4d60de6718e8e5b326e338ae | c4ca4238a0b923820dcc509a6f758 |
+	| coffeebean-to-delete-Id  | coffeebean-not-to-delete-Id |
+	| c4ca4238a0b923820dcc509a | eccbc87e4b5ce2fe28308fd9	 |
+
+# Negative Scenario - malformed Id
+Scenario: Request Failure - CoffeeBean Not Found - Invalid RequestUrl Id Supplied
+	Given the request url contains Id field with <invalid-request-id>
+	When a DELETE request is made
+	Then the response was 400 Bad Request
+
+	Examples:
+	| invalid-request-id					|
+	| invalid_value							|
+	| 00000000-0000-0000-0000-000000000000	|
+
+# Other scenarios to consider - CoffeeBean not found
