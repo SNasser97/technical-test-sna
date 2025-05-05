@@ -14,7 +14,7 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.DeleteCoffeeB
         [Then("the CoffeeBean with Id (.*) (was|was not) deleted")]
         public async Task ThenTheCoffeeBeanWithIdWasOrWasNotDeleted(string id, string condition)
         {
-            await Task.CompletedTask;
+            await this.scenarios.ValidateCoffeeBeanRecordAsync(id, condition);
         }
     }
 }
