@@ -14,6 +14,13 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.GetCoffeeBean
         [Given("the request url contains query parameter (.*) with value (.*)")]
         public void GivenTheRequestUrlContainsQueryParameterWithValue(string queryParameter, object value)
         {
+            if (queryParameter.Equals("Page", StringComparison.OrdinalIgnoreCase))
+            {
+                this.scenarios.RequestUrl += $"?{queryParameter}={value}";
+                return;
+            }
+
+            this.scenarios.RequestUrl += $"&{queryParameter}={value}";
         }
 
         [Given("(.*) CoffeeBeans exist")]
@@ -26,6 +33,12 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.GetCoffeeBean
         public void ThenTheResponseContainsNumberOfItems(int count)
         {
             this.scenarios.ValidateResponseItems(count);
+        }
+
+        [Then("the response was empty")]
+        public void ThenTheResponseWasEmpty()
+        {
+            this.scenarios.ValidateResponseWasEmpty();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.GetCoffeeBean
 
         protected override async Task OnSendRequestAsync(string httpAction)
         {
-            this.Response = await Setup.httpClient.GetAsync(endpointUrl);
+            this.Response = await Setup.httpClient.GetAsync(this.RequestUrl);
             string content = await this.Response.Content.ReadAsStringAsync();
             Assert.IsNotNull(content);
 
@@ -37,14 +37,19 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.GetCoffeeBean
                 });
 
                 await dbContext.CoffeeBean.AddRangeAsync(records);
+                await dbContext.SaveChangesAsync();
             });
         }
 
         public void ValidateResponseItems(int count)
         {
-            Console.WriteLine("JSON DATA: {0}", JsonSerializer.Serialize(this.ResponseContent));
             Assert.IsNotEmpty(this.ResponseContent);
             Assert.AreEqual(count, this.ResponseContent.Count());
+        }
+
+        public void ValidateResponseWasEmpty()
+        {
+            Assert.IsEmpty(this.ResponseContent);
         }
 
         private decimal GenerateRandomCost()

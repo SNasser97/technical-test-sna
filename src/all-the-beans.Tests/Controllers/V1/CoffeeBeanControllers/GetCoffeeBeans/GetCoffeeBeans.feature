@@ -16,4 +16,9 @@ Scenario: Request Successful - Custom Pagination Supplied - CoffeeBeans Returned
 	Then the response was 200 OK
 	And the response contains 10 items
 
+Scenario: Request Successful - CoffeeBeans Returned Empty - 200 OK
+	Given 0 CoffeeBeans exist
+	When a GET request is made
+	Then the response was 200 OK
+	And the response was empty
 # Additional scenarios to consider - Validating Page and ItemsPerPage, clamping values
