@@ -16,8 +16,8 @@ namespace all_the_beans.Tests.Extensions
         {
             using (IServiceScope serviceScope = serviceProvider.CreateScope())
             {
-                TDbContext coffeeBeanDbContext = serviceScope.ServiceProvider.GetRequiredService<TDbContext>();
-                await dbContextAction(coffeeBeanDbContext);
+                TDbContext dbContext = serviceScope.ServiceProvider.GetRequiredService<TDbContext>();
+                await dbContextAction(dbContext);
             }
 
             return serviceProvider;
