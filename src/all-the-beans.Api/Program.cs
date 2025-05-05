@@ -13,7 +13,9 @@ namespace all_the_beans.Api
         {
             var host = CreateHostBuilder(args).Build();
 
+            // Ideally we would only run this in development environment
             await host.RunCoffeeBeanDatabaseMigrationAsync();
+            await host.SeedCoffeeBeanJsonDataAsync();
             host.Run();
         }
 
