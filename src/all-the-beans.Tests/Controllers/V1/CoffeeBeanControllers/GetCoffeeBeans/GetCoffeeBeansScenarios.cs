@@ -15,9 +15,10 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.GetCoffeeBean
         protected override async Task OnSendRequestAsync(string httpAction)
         {
             this.Response = await Setup.httpClient.GetAsync(endpointUrl);
+            string content = await this.Response.Content.ReadAsStringAsync();
+            Assert.IsNotNull(content);
 
-            Console.WriteLine($"DEBUG: {JsonSerializer.Serialize(this.Response)}");
-            Console.WriteLine($"DEBUG Content: {JsonSerializer.Serialize(await this.Response.Content.ReadAsStringAsync())}");
+            this.ResponseContent = JsonSerializer.Deserialize<IEnumerable<CoffeeBean>>(content);
         }
 
         public async Task CreateCoffeeBeanRecordsAsync(int count)
@@ -39,12 +40,9 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.GetCoffeeBean
             });
         }
 
-        public async Task ValidateResponseItemsAsync(int count)
+        public void ValidateResponseItems(int count)
         {
-            string content = await this.Response.Content.ReadAsStringAsync();
-            Assert.IsNotNull(content);
-
-            this.ResponseContent = JsonSerializer.Deserialize<IEnumerable<CoffeeBean>>(content);
+            Console.WriteLine("JSON DATA: {0}", JsonSerializer.Serialize(this.ResponseContent));
             Assert.IsNotEmpty(this.ResponseContent);
             Assert.AreEqual(count, this.ResponseContent.Count());
         }

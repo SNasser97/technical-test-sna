@@ -25,7 +25,7 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.GetCoffeeBean
         [Then("the response contains (.*) items")]
         public void ThenTheResponseContainsNumberOfItems(int count)
         {
-            this.scenarios.ValidateResponseItemsAsync(count);
+            this.scenarios.ValidateResponseItems(count);
         }
     }
 }
