@@ -1,6 +1,8 @@
 ﻿using all_the_beans.Data.Context;
+using all_the_beans.Data.Tables.CoffeeBeanTable;
 using all_the_beans.Entities.Entity.CoffeeBean;
 using all_the_beans.Entities.Repositories.CoffeeBeanRepository;
+using Microsoft.EntityFrameworkCore;
 
 namespace all_the_beans.Data.Repositories.CoffeeBeanRepository
 {
@@ -14,9 +16,17 @@ namespace all_the_beans.Data.Repositories.CoffeeBeanRepository
         }
 
         /// <inherit doc/>
-        public Task<IEnumerable<CoffeeBean>> GetAsync(int pageNumber, int itemsPerPage)
+        public async Task<IEnumerable<CoffeeBean>> GetAsync(int pageNumber, int itemsPerPage)
         {
-            throw new NotImplementedException();
+   
+            IEnumerable<CoffeeBeanTable> coffeeBeanTableRecords = await this.coffeeBeanDbContext.CoffeeBean
+                    .OrderBy(p => p.Index)
+                    .Skip((pageNumber - 1) * itemsPerPage)
+                    .Take(itemsPerPage)
+                    .AsNoTracking()
+                    .ToListAsync();
+
+            return coffeeBeanTableRecords.Select(coffeeBeanTableRecord => CoffeeBeanTable.ToCoffeeBeanEntity(coffeeBeanTableRecord));
         }
     }
 }
