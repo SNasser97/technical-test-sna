@@ -22,4 +22,12 @@
     <ProjectReference Include="..\all-the-beans.Entities\all-the-beans.Entities.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<Content Remove="Utilities\AllTheBeans.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="Utilities\AllTheBeans.json" />
+	</ItemGroup>
+
 </Project>
