@@ -10,5 +10,8 @@ namespace all_the_beans.Api.Controllers.V1.CoffeeBeanControllers.GetCoffeeBeans
 
         [FromQuery]
         public int ItemsPerPage { get; set; } = 25;
+
+        [FromQuery]
+        public string Name { get; set; }
     }
 }
