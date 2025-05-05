@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using all_the_beans.Data.Context;
 using all_the_beans.Tests.Extensions;
+using all_the_beans.Data.Tables.CoffeeBeanTable;
 
 namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
 {
@@ -51,6 +52,26 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
         public async Task SendRequestAsync(string httpAction)
         {
             await this.OnSendRequestAsync(httpAction);
+        }
+
+        public async Task CreateCoffeeBeanRecordAsync(string id)
+        {
+            await Setup.factory.Services.PerformDbContextActionAsync<CoffeeBeanDbContext>(async (dbContext) =>
+            {
+                var coffeeBeanTableRecord = new CoffeeBeanTable
+                {
+                    Id = id,
+                    Name = $"Test Bean {id}",
+                    Country = "Test Country",
+                    Colour = "Test Colour",
+                    Cost = 10.99m,
+                    Description = "Test Description",
+                    Image = $"http://image-example-{id}.com"
+                };
+
+                await dbContext.CoffeeBean.AddAsync(coffeeBeanTableRecord);
+                await dbContext.SaveChangesAsync();
+            });
         }
 
         private object GenerateTestData(string condition, object testData)

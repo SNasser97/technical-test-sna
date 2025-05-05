@@ -49,7 +49,7 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
         [Given("another CoffeeBean exists with Id (.*)")]
         public async Task GivenACoffeeBeanExistsWithId(string id)
         {
-            await Task.CompletedTask;
+            await this.scenarios.CreateCoffeeBeanRecordAsync(id);
         }
 
         [When("a (.*) request is made")]
