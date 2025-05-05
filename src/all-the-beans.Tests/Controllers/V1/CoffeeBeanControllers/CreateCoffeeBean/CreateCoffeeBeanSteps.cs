@@ -14,7 +14,7 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.CreateCoffeeB
         [Then("the new CoffeeBean was created")]
         public async Task ThenTheNewCoffeeBeanWasCreated()
         {
-            await this.scenarios.ValidateCoffeBeanWasCreatedAsync();
+            await this.scenarios.ValidateCoffeeBeanWasCreatedAsync();
         }
 
         [Then("the new CoffeeBean (.*) matches the request body field (.*)")]

@@ -21,7 +21,7 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.CreateCoffeeB
             this.Response = await Setup.httpClient.PostAsync(endpointUrl, content);
         }
 
-        public async Task ValidateCoffeBeanWasCreatedAsync()
+        public async Task ValidateCoffeeBeanWasCreatedAsync()
         {
             await Setup.factory.Services.PerformDbContextActionAsync<CoffeeBeanDbContext>(async (dbContext) =>
             {
