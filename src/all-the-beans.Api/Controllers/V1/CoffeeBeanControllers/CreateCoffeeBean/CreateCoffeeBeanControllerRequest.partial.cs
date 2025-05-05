@@ -1,6 +1,6 @@
 ﻿using all_the_beans.Entities.Commands.V1.CoffeeBeanCommands.CreateCoffeeBeanCommand;
 
-namespace all_the_beans.Api.Controllers.V1.CoffeeBean.CreateCoffeeBean
+namespace all_the_beans.Api.Controllers.V1.CoffeeBeanControllers.CreateCoffeeBean
 {
     public partial record CreateCoffeeBeanControllerRequest
     {

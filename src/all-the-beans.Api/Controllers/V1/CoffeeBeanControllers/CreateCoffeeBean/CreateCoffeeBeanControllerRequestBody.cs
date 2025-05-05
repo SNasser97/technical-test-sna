@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace all_the_beans.Api.Controllers.V1.CoffeeBean.CreateCoffeeBean
+namespace all_the_beans.Api.Controllers.V1.CoffeeBeanControllers.CreateCoffeeBean
 {
     // Will assume that when creating a new coffee bean all fields are required.
     public record CreateCoffeeBeanControllerRequestBody

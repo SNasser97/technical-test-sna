@@ -1,7 +1,7 @@
 ﻿using all_the_beans.Entities.Commands.V1.CoffeeBeanCommands.UpdateCoffeeBeanCommand;
 using Microsoft.AspNetCore.Mvc;
 
-namespace all_the_beans.Api.Controllers.V1.CoffeeBean.UpdateCoffeeBean
+namespace all_the_beans.Api.Controllers.V1.CoffeeBeanControllers.UpdateCoffeeBean
 {
     /// <summary>
     /// Updates a specific coffeebean.

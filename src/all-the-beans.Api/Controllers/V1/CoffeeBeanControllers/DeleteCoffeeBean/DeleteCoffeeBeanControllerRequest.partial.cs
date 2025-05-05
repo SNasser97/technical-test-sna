@@ -1,6 +1,6 @@
 ﻿using all_the_beans.Entities.Commands.V1.CoffeeBeanCommands.DeleteCoffeeBeanCommand;
 
-namespace all_the_beans.Api.Controllers.V1.CoffeeBean.DeleteCoffeeBean
+namespace all_the_beans.Api.Controllers.V1.CoffeeBeanControllers.DeleteCoffeeBean
 {
     public partial record DeleteCoffeeBeanControllerRequest
     {

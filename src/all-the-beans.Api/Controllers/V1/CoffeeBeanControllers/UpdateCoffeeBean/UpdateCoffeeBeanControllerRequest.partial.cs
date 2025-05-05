@@ -1,6 +1,6 @@
 ﻿using all_the_beans.Entities.Commands.V1.CoffeeBeanCommands.UpdateCoffeeBeanCommand;
 
-namespace all_the_beans.Api.Controllers.V1.CoffeeBean.UpdateCoffeeBean
+namespace all_the_beans.Api.Controllers.V1.CoffeeBeanControllers.UpdateCoffeeBean
 {
     public partial record UpdateCoffeeBeanControllerRequest
     {

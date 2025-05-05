@@ -1,7 +1,7 @@
 ﻿using all_the_beans.Entities.Commands.V1.CoffeeBeanCommands.DeleteCoffeeBeanCommand;
 using Microsoft.AspNetCore.Mvc;
 
-namespace all_the_beans.Api.Controllers.V1.CoffeeBean.DeleteCoffeeBean
+namespace all_the_beans.Api.Controllers.V1.CoffeeBeanControllers.DeleteCoffeeBean
 {
     /// <summary>
     /// Deletes a specific coffeebean.
