@@ -1,5 +1,9 @@
 
 using all_the_beans.Data.Extensions;
+using all_the_beans.Data.Utilities;
+using all_the_beans.Entities.Entity.CoffeeBean;
+using all_the_beans.Entities.Utilities;
+using System.Text.Json;
 
 namespace all_the_beans.Api
 {
@@ -9,7 +13,9 @@ namespace all_the_beans.Api
         {
             var host = CreateHostBuilder(args).Build();
 
+            // Ideally we would only run this in development environment
             await host.RunCoffeeBeanDatabaseMigrationAsync();
+            await host.SeedCoffeeBeanJsonDataAsync();
             host.Run();
         }
 

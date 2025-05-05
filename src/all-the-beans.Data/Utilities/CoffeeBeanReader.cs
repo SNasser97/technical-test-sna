@@ -14,7 +14,7 @@ namespace all_the_beans.Data.Utilities
         public IEnumerable<CoffeeBeanJson> GenerateCoffeeBeanFromJson()
         {
             //Console.WriteLine("DIR {0}", JsonSerializer.Serialize(Directory.GetFiles(Directory.GetCurrentDirectory())));
-            var json = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "Utilities/AllTheBeans.json"));
+            var json = File.ReadAllText(Path.Combine("../all-the-beans.Data/", "Utilities/AllTheBeans.json"));
 
             json.Replace("£", "");
 
