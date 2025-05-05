@@ -1,34 +1,27 @@
 ﻿using all_the_beans.Api;
 using all_the_beans.Data.Context;
+using all_the_beans.Tests.Extensions;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Reqnroll;
 using Testcontainers.MySql;
+using Microsoft.Extensions.Configuration;
+using all_the_beans.Data.Constants.ConfigurationConstants;
 
 namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
 {
     [Binding]
-    public class Setup
+    public sealed class Setup
     {
         public static MySqlContainer dbContainer;
         public static WebApplicationFactory<Program> factory;
         public static HttpClient httpClient;
-        private const string baseAddress = "http://localhost:5053";
 
         [BeforeTestRun]
         public static async Task InitialiseAsync()
         {
             Console.WriteLine("Initialising up global test environment...");
-
-            // Initialize MySQL Testcontainer
-            dbContainer = new MySqlBuilder()
-                .WithDatabase("testdb")
-                .WithUsername("testuser")
-                .WithPassword("testpassword")
-                .Build();
-
-            await dbContainer.StartAsync();
 
             // Initialize WebApplicationFactory
             factory = new WebApplicationFactory<Program>()
@@ -43,23 +36,36 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.Common
                         if (serviceDescriptor != null)
                             services.Remove(serviceDescriptor);
 
+                        IConfiguration configuration = services.BuildServiceProvider().GetService<IConfiguration>();
+                        var mysqlVersion = configuration[ConfigurationDatabaseConstants.MySQLVersion];
                         services.AddDbContext<CoffeeBeanDbContext>(options =>
-                            options.UseMySql(dbContainer.GetConnectionString(), ServerVersion.AutoDetect(dbContainer.GetConnectionString())));
+                            options.UseMySql(dbContainer.GetConnectionString(), new MySqlServerVersion(mysqlVersion)));
                     });
                 });
-            
-            // Initialise database
-            using (IServiceScope serviceScope = factory.Services.CreateScope())
+
+            IConfiguration configuration = factory.Services.GetService<IConfiguration>();
+
+            // Initialize MySQL Testcontainer
+            dbContainer = new MySqlBuilder()
+                .WithImage($"mysql:{configuration[ConfigurationDatabaseConstants.MySQLVersion]}")
+                .WithDatabase("testdb")
+                .WithUsername("testuser")
+                .WithPassword("testpassword")
+                .Build();
+
+            await dbContainer.StartAsync();
+
+            await factory.Services.PerformDbContextActionAsync<CoffeeBeanDbContext>(async (dbContext) =>
             {
+                // Initialise database
                 // Ensure the database is created and migrated
                 // This will run the migrations against the Testcontainer database
                 // This will be the same CoffeeBean Table structure as the local database
-                CoffeeBeanDbContext coffeeBeanDbContext = serviceScope.ServiceProvider.GetRequiredService<CoffeeBeanDbContext>();
-                await coffeeBeanDbContext.Database.MigrateAsync();
-            }
+                await dbContext.Database.MigrateAsync();
+            });
 
             httpClient = factory.CreateClient();
-            httpClient.BaseAddress = new Uri(baseAddress);
+            httpClient.BaseAddress = factory.Server.BaseAddress;
         }
 
         [AfterTestRun]

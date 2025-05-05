@@ -2,6 +2,6 @@
 {
     public interface ICommand<TCommandRequest, TCommandResponse>
     {
-        Task ExecuteAsync(TCommandRequest request);
+        Task<TCommandResponse> ExecuteAsync(TCommandRequest request);
     }
 }

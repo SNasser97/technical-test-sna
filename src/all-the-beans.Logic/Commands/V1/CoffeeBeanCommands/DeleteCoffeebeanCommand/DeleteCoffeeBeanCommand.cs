@@ -4,7 +4,7 @@ namespace all_the_beans.Logic.Commands.V1.CoffeeBeanCommands.DeleteCoffeebeanCom
 {
     internal class DeleteCoffeeBeanCommand : IDeleteCoffeeBeanCommand
     {
-        public Task ExecuteAsync(DeleteCoffeeBeanCommandRequest request)
+        public Task<DeleteCoffeeBeanCommandResponse> ExecuteAsync(DeleteCoffeeBeanCommandRequest request)
         {
             throw new NotImplementedException();
         }
