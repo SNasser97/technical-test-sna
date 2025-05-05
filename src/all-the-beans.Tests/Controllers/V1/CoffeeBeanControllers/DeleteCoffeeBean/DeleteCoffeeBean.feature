@@ -11,5 +11,5 @@ Scenario Outline: Request Successful - CoffeeBean Deleted - 204 No Content
 	And the CoffeeBean with Id <coffeebean-not-to-delete-Id> was not deleted
 
 	Examples:
-	| coffeebean-to-delete-Id		| coffeebean-not-to-delete-Id	|
-	| 1a79a4d60de6718e8e5b326e338ae | c4ca4238a0b923820dcc509a6f758 |
+	| coffeebean-to-delete-Id  | coffeebean-not-to-delete-Id |
+	| c4ca4238a0b923820dcc509a | eccbc87e4b5ce2fe28308fd9	 |
