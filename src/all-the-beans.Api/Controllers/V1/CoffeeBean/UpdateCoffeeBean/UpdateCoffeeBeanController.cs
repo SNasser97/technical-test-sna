@@ -21,8 +21,7 @@ namespace all_the_beans.Api.Controllers.V1.CoffeeBean.UpdateCoffeeBean
         [HttpPut]
         public async Task<IActionResult> PutAsync(UpdateCoffeeBeanControllerRequest request)
         {
-            Console.WriteLine($"Received Cost: {request.Body.Cost}");
-            Console.WriteLine($"Received Id: {request.Id}");
+            await this.command.ExecuteAsync(UpdateCoffeeBeanControllerRequest.ToCommandRequest(request));
             return await Task.FromResult(Ok("updated."));
         }
     }

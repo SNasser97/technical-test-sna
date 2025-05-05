@@ -11,15 +11,16 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.UpdateCoffeeB
         {
         }
 
-        [Then("the CoffeeBean was updated")]
-        public async Task ThenTheCoffeeBeanWasUpdated()
+        [Then("the CoffeeBean was updated for Id (.*)")]
+        public async Task ThenTheCoffeeBeanWasUpdated(string id)
         {
-            await Task.CompletedTask;
+            await this.scenarios.RetrieveRecordAsync(id);
         }
 
         [Then("the updated CoffeeBean (.*) matches the request body field (.*)")]
         public void ThenTheUpdatedCoffeeBeanMatchesTheRequestBodyField(string entityField, string requestBodyField)
         {
+            this.scenarios.ValidateCoffeeBeanRecord(entityField, requestBodyField);
         }
     }
 }

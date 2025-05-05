@@ -21,11 +21,12 @@ namespace all_the_beans.Api.Controllers.V1.CoffeeBean.UpdateCoffeeBean
         public string Colour { get; set; }
 
         [Required]
-        [StringLength(256)]
+        [StringLength(65535)]
+        // Note: maximum length in correlation to the database column. Though this can be reduced to a smaller value.
         public string Description { get; set; }
 
         [Required]
-        [StringLength(30)]
-        public required string Country { get; set; }
+        [StringLength(128)]
+        public string Country { get; set; }
     }
 }
