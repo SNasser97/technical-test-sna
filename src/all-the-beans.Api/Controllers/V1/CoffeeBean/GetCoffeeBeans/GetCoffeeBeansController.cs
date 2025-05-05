@@ -21,6 +21,7 @@ namespace all_the_beans.Api.Controllers.V1.CoffeeBean.GetCoffeeBeans
         [HttpGet]
         public async Task<IActionResult> GetAsync(GetCoffeeBeansControllerRequest request)
         {
+            await this.query.ExecuteAsync(GetCoffeeBeansControllerRequest.ToQueryRequest(request));
             return await Task.FromResult(Ok("hello success"));
         }
     }
