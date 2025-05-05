@@ -2,6 +2,6 @@
 {
     public class RegularExpressionConstants
     {
-        public const string requestIdPattern = "@\"^[a-zA-Z0-9]{24}$\"";
+        public const string requestIdPattern = @"^[a-zA-Z0-9]{24}$";
     }
 }
