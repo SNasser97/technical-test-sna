@@ -2,6 +2,7 @@
 using all_the_beans.Data.Tables.CoffeeBeanTable;
 using all_the_beans.Entities.Entity.CoffeeBean;
 using all_the_beans.Entities.Repositories.CoffeeBeanRepository;
+using Microsoft.EntityFrameworkCore;
 
 namespace all_the_beans.Data.Repositories.CoffeeBeanRepository
 {
@@ -23,9 +24,10 @@ namespace all_the_beans.Data.Repositories.CoffeeBeanRepository
         }
 
         /// <inherit doc/>
-        public Task DeleteAsync(string id)
+        public async Task DeleteAsync(string id)
         {
-            throw new NotImplementedException();
+            await this.coffeeBeanDbContext.CoffeeBean.Where(coffeeBean => coffeeBean.Id == id)
+                .ExecuteDeleteAsync();
         }
 
         /// <inherit doc/>
