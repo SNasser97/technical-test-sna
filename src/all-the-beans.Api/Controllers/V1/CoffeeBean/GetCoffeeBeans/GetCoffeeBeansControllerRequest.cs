@@ -2,7 +2,7 @@
 
 namespace all_the_beans.Api.Controllers.V1.CoffeeBean.GetCoffeeBeans
 {
-    public record GetCoffeeBeansControllerRequest
+    public partial record GetCoffeeBeansControllerRequest
     {
         [FromQuery]
         public int Page { get; set; }
