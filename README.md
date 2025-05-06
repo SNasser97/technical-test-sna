@@ -47,3 +47,15 @@ Included GithubActions for simple CI/CD which builds and runs defined tests in t
 1. Load testing: if expanding on this in other environments then load testing endpoints to gather metrics
 1. Unit testing (currently BDD tests which are integration tests between API -> Logic -> Data interaction)
 1. Filtering/searching capabilities: utilise Elasticsearch for complex filtering a long with OData filters example: retrieving price between 5 and 10
+1. Cancellation tokens: possibly using these for long running tasks or if for some reason client cancels the request (closing browser)
+
+# Testing GET BeanOfTheDay
+1. Ensure service is running (follow steps above)
+1. When running the service some data will be seeded
+1. One of the coffeebeans will be already a BeanOfTheDay with a timestamp set to 24 hours ago
+1. Use Postman to send a GET request to the endpoint: `https://localhost:7280/api/BeanOfTheDay` or `http://localhost:5053/api/BeanOfTheDay`
+1. The response should then return a random Coffeebean from the database
+1. Any further responses should keep returning the same Coffeebean until the 24 hours has passed
+1. To test if a new random CoffeeBean is selected can edit the timestamp in phpmyadmin or MySQL WorkBench 
+	1. Note: The timestamp is represented in miliseconds
+	1. Resource: Can use https://www.epochconverter.com/
