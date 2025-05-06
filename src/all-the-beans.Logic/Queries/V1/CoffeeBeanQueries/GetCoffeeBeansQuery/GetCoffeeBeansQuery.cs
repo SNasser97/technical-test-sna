@@ -19,8 +19,15 @@ namespace all_the_beans.Logic.Queries.V1.CoffeeBeanQueries.GetCoffeeBeansQuery
             // Considerations - Pagination<TEntity> model
             // Return TotalItems which can be used by the front end..
             // Return TotalPages which can be used by the front end..
-            IEnumerable<CoffeeBean> coffeeBeans = await this.coffeeBeanReadRepository.GetAsync(request.Page, request.ItemsPerPAge);
-            
+            var filters = new Dictionary<string, string>();
+
+            if (!string.IsNullOrWhiteSpace(request.Colour))
+            {
+                filters.Add(nameof(request.Colour), request.Colour);
+            }
+
+            var coffeeBeans = await this.coffeeBeanReadRepository.GetAsync(request.Page, request.ItemsPerPAge, filters);
+
             return new GetCoffeeBeansQueryResponse
             {
                 CoffeeBeans = coffeeBeans
