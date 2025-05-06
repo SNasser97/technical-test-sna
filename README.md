@@ -6,12 +6,16 @@ Using .NET Core 8
 
 Included GithubActions for simple CI/CD which builds and runs defined tests in the project.
 
-### Packages used:
+## Packages used:
 - Entity Framework Core 8 - for database access/ORM purposes
-- Entity Framework MySql 
+- Entity Framework Design - for design time database access (migration management and scaffolding)
+- Microsoft.Extensions.Configuration - for configuration management (building extension methods in project)
+- Pomelo.EntityFrameworkCore.MySql - extension package from EF Core for MySql database access
 - TestContainers.MySql - Allowing for simple MySql database creation and teardown
 - Reqnroll.NUnit (Specflow replacement due to Specflow being deprecated)
 - NUnit - for assertions and possible unit testing in future (used for assertions in integration/bdd tests..)
+- Microsoft.AspNetCore.Mvc.Testing - for integration testing
+
 # Getting Started
 ## Prerequisites:
 - .NET Core 8 SDK
