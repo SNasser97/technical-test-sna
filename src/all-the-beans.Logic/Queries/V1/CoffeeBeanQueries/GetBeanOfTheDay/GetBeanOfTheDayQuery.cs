@@ -15,6 +15,7 @@ namespace all_the_beans.Logic.Queries.V1.CoffeeBeanQueries.GetBeanOfTheDay
 
         public async Task<GetBeanOfTheDayQueryResponse> ExecuteAsync()
         {
+            // considerations: can the BeanOfTheDay be deleted? will assume it cannot otherwise we perform a lookup with just the flag
             CoffeeBean coffeeBean =  await this.coffeeBeanReadRepository.GetBeanOfTheDayAsync();
 
             return new GetBeanOfTheDayQueryResponse

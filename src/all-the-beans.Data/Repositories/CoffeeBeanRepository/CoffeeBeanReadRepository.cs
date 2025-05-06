@@ -43,9 +43,35 @@ namespace all_the_beans.Data.Repositories.CoffeeBeanRepository
             return coffeeBeanTableRecords.Select(CoffeeBeanTable.ToCoffeeBeanEntity);
         }
 
-        public Task<CoffeeBean> GetBeanOfTheDayAsync()
+        public async Task<CoffeeBean> GetBeanOfTheDayAsync()
         {
-            throw new NotImplementedException();
+            long timestampTwentyFourHoursAgo = DateTimeOffset.Now.AddHours(-24).ToUnixTimeMilliseconds();
+            CoffeeBeanTable currentBeanOfTheDay = await this.coffeeBeanDbContext.CoffeeBean
+                    .SingleAsync(coffeeBeanTable => coffeeBeanTable.IsBeanOfTheDay == true);
+
+            // if the bean of the day is still valid, return it
+            if (currentBeanOfTheDay.LastBeanOfTheDayTime.GetValueOrDefault() >= timestampTwentyFourHoursAgo)
+            {
+                return CoffeeBeanTable.ToCoffeeBeanEntity(currentBeanOfTheDay);
+            }
+
+            // if the bean of the day is past the expiry time, set it to null
+            if (currentBeanOfTheDay.LastBeanOfTheDayTime < timestampTwentyFourHoursAgo)
+            {
+                currentBeanOfTheDay.IsBeanOfTheDay = false;
+                await this.coffeeBeanDbContext.SaveChangesAsync();
+            }
+
+            // get a new bean of the day - check if previous is not 24 hours old
+            var newBeanOfTheDay = await this.coffeeBeanDbContext.CoffeeBean
+                .Where(coffeeBeanTable => !coffeeBeanTable.LastBeanOfTheDayTime.HasValue || coffeeBeanTable.LastBeanOfTheDayTime < timestampTwentyFourHoursAgo)
+                .OrderBy(coffeeBeanTable => EF.Functions.Random())
+                .FirstAsync();
+            newBeanOfTheDay.IsBeanOfTheDay = true;
+            newBeanOfTheDay.LastBeanOfTheDayTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            await this.coffeeBeanDbContext.SaveChangesAsync();
+
+            return CoffeeBeanTable.ToCoffeeBeanEntity(newBeanOfTheDay);
         }
 
         private IQueryable<CoffeeBeanTable> GetFilters(IQueryable<CoffeeBeanTable> query, IDictionary<string, string> filters)

@@ -60,5 +60,8 @@ namespace all_the_beans.Data.Tables.CoffeeBeanTable
         /// </summary>
         [Column(TypeName = "varchar(128)")]
         public string Country { get; set; }
+
+        [Column(TypeName = "bigint unsigned")]
+        public long? LastBeanOfTheDayTime { get; set; }
     }
 }
