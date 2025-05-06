@@ -26,15 +26,18 @@ Included GithubActions for simple CI/CD which builds and runs defined tests in t
 ## Steps for running locally:
 1. Clone the repository
 1. Open the solution in your IDE of choice (Visual Studio, Rider, etc.)
-1. Build the solution
+1. Build the solution `dotnet build`
 1. Run `docker compose up -d` to start the MySql database
 1. Ensure Mysql container and relevant containers are up and running
+1. Once service is running migration scripts should have been applied to generate the database and CoffeeBean table
+<br><br> Note: **Running the service will seed test data supplied from AllTheBeans.json file**
+
 1. Visit http://localhost:8081 to view database in phpmyadmin
-1. Run the application using `dotnet run` or from your IDE
+1. Run the application using `dotnet run --project src/all-the-beans.Api/all-the-beans.Api.csproj` or from your IDE
 1. The API should be available at https://localhost:7280 if IDE is selected to run with https or http://localhost:5053 if running http.
 1. To view endpoint documentation visit: (Running HTTPS) https://localhost:7280/swagger/index.html or (Running HTTP) http://localhost:5053/swagger/index.html  
 1. For interacting with endpoints a Postman collection is available to import. See folder 'postman-collection'
-1. For running tests this can be run from IDE. These tests run against an isolated MySql container created by TestContainer
+1. For running tests this can be run from IDE. These tests run against an isolated MySql container created by TestContainer (or use `dotnet test`)
 
 # Considerations:
 1. Cross-cutting concerns: logging, authentication, authorisation
@@ -59,3 +62,18 @@ Included GithubActions for simple CI/CD which builds and runs defined tests in t
 1. To test if a new random CoffeeBean is selected can edit the timestamp in phpmyadmin or MySQL WorkBench 
 	1. Note: The timestamp is represented in miliseconds
 	1. Resource: Can use https://www.epochconverter.com/
+
+# Updating CoffeeBeanTable
+
+**Ensure MySQL container is running** <br><br>
+Any changes to CoffeeBean table will require a migration script to be created and applied to the database. <br><br> This can be done by running the following command in the terminal:
+
+Then run the service which should apply this.
+```bash
+dotnet ef migrations add <your-migration-script-name> --project src/all-the-beans.Data/all-the-beans.Data.csproj --startup-project src/all-the-beans.Api/all-the-beans.Api.csproj
+```
+
+Alternatively running in the CLI:
+```bash
+dotnet ef migrations update --project src/all-the-beans.Data/all-the-beans.Data.csproj --startup-project src/all-the-beans.Api/all-the-beans.Api.csproj
+```
