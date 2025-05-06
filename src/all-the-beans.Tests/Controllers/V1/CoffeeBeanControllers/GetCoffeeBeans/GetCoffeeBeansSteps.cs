@@ -29,10 +29,10 @@ namespace all_the_beans.Tests.Controllers.V1.CoffeeBeanControllers.GetCoffeeBean
             await this.scenarios.CreateCoffeeBeanRecordsAsync(count);
         }
 
-        [Given("(.*) CoffeeBeans exist with (.*) (.*)")]
-        public async Task GivenNumberOfCoffeeBeansExistWithFieldValue(int count, string field, object value)
+        [Given("(.*) CoffeeBeans exist with Colour (.*)")]
+        public async Task GivenNumberOfCoffeeBeansExistWithColourFieldValue(int count, string value)
         {
-            await this.scenarios.CreateCoffeeBeanRecordsAsync(count, field, value);
+            await this.scenarios.CreateCoffeeBeanRecordsAsync(count, value);
         }
 
         [Then("the response contains (.*) items")]
