@@ -33,7 +33,7 @@ Included GithubActions for simple CI/CD which builds and runs defined tests in t
 1. Run the application using `dotnet run` or from your IDE
 1. The API should be available at https://localhost:7280 if IDE is selected to run with https or http://localhost:5053 if running http.
 1. To view endpoint documentation visit: (Running HTTPS) https://localhost:7280/swagger/index.html or (Running HTTP) http://localhost:5053/swagger/index.html  
-1. For interacting with endpoints a Postman collection is available in the project a long with local environment variables
+1. For interacting with endpoints a Postman collection is available in the project with local environment variables. See folder 'postman-collection'
 
 # Considerations:
 1. Cross-cutting concerns: logging, authentication, authorisation
