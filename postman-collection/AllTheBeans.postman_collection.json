@@ -1,0 +1,119 @@
+{
+	"info": {
+		"_postman_id": "4e7f3e22-e44b-4dec-bdb2-95a9e68c41ef",
+		"name": "AllTheBeans",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44592153",
+		"_collection_link": "https://d-4529605.postman.co/workspace/d's-Workspace~5f7c1f90-5104-4338-8bbc-6b5cbc2b500e/collection/44592153-4e7f3e22-e44b-4dec-bdb2-95a9e68c41ef?action=share&source=collection_link&creator=44592153"
+	},
+	"item": [
+		{
+			"name": "V1 - CoffeeBeans",
+			"item": [
+				{
+					"name": "CoffeeBean",
+					"item": [
+						{
+							"name": "Create CoffeeBean",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"Name\": \"Coffee {{$randomProductName}}\",\r\n    \"Description\": \"Some coffee {{$randomLoremWords}}.\",\r\n    \"Cost\": {{$randomPrice}},\r\n    \"Image\": \"{{$randomImageUrl}}\",\r\n    \"Colour\": \"{{$randomColor}}\",\r\n    \"Country\": \"{{$randomCountry}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}{{port}}{{baseCoffeeBeanUrl}}",
+									"host": [
+										"{{baseUrl}}{{port}}{{baseCoffeeBeanUrl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update CoffeeBean",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"Name\": \"Updated Coffee {{$randomProductName}}\",\r\n    \"Description\": \"Updated description: {{$randomLoremWords}}.\",\r\n    \"Cost\": {{$randomPrice}},\r\n    \"Image\": \"{{$randomImageUrl}}\",\r\n    \"Colour\": \"{{$randomColor}}\",\r\n    \"Country\": \"{{$randomCountry}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}{{port}}{{baseCoffeeBeanUrl}}/{{Id}}",
+									"host": [
+										"{{baseUrl}}{{port}}{{baseCoffeeBeanUrl}}"
+									],
+									"path": [
+										"{{Id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete CoffeeBean",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}{{port}}{{baseCoffeeBeanUrl}}/{{Id}}",
+									"host": [
+										"{{baseUrl}}{{port}}{{baseCoffeeBeanUrl}}"
+									],
+									"path": [
+										"{{Id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get CoffeeBeans",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}{{port}}{{baseCoffeeBeanUrl}}?Page=1&ItemsPerPage=3&Colour=E",
+									"host": [
+										"{{baseUrl}}{{port}}{{baseCoffeeBeanUrl}}"
+									],
+									"query": [
+										{
+											"key": "Page",
+											"value": "1",
+											"description": "current page to specify."
+										},
+										{
+											"key": "ItemsPerPage",
+											"value": "3",
+											"description": "items per page to retrieve."
+										},
+										{
+											"key": "Colour",
+											"value": "E",
+											"description": "the colour of the coffee bean"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "CRUD operations against coffeebeans:\n\n- POST - Create CoffeeBean\n    \n- PUT - Update CoffeeBean\n    \n- DELETE - Delete CoffeeBean\n    \n- GET - Get CoffeeBeans"
+		}
+	]
+}
