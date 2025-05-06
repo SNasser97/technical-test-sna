@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
-namespace all_the_beans.Api.Controllers.V1.CoffeeBean.CreateCoffeeBean
+namespace all_the_beans.Api.Controllers.V1.CoffeeBeanControllers.CreateCoffeeBean
 {
     /// <summary>
     /// Creates a coffeebean.

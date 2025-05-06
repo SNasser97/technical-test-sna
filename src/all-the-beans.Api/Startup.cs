@@ -1,5 +1,6 @@
 ﻿using all_the_beans.Data.Extensions;
 using all_the_beans.Logic.Extensions;
+using System.Text.Json;
 
 namespace all_the_beans.Api
 {
@@ -7,7 +8,11 @@ namespace all_the_beans.Api
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.PropertyNamingPolicy = null;
+                });
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
 

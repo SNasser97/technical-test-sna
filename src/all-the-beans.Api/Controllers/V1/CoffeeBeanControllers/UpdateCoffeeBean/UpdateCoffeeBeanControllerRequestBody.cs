@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace all_the_beans.Api.Controllers.V1.CoffeeBean.UpdateCoffeeBean
+namespace all_the_beans.Api.Controllers.V1.CoffeeBeanControllers.UpdateCoffeeBean
 {
     // Will assume that when updating a coffee bean all fields are mandatory for updating.
     public record UpdateCoffeeBeanControllerRequestBody

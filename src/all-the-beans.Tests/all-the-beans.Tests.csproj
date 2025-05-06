@@ -24,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\all-the-beans.Api\all-the-beans.Api.csproj" />
     <ProjectReference Include="..\all-the-beans.Data\all-the-beans.Data.csproj" />
+    <ProjectReference Include="..\all-the-beans.Logic\all-the-beans.Logic.csproj" />
   </ItemGroup>
 
   <ItemGroup>

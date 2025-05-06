@@ -22,5 +22,21 @@ namespace all_the_beans.Data.Tables.CoffeeBeanTable
                 Country = coffeeBean.Country
             };
         }
+
+        public static CoffeeBean ToCoffeeBeanEntity(CoffeeBeanTable coffeeBeanTable)
+        {
+            return new CoffeeBean
+            {
+                Id = coffeeBeanTable.Id,
+                Index = coffeeBeanTable.Index,
+                IsBeanOfTheDay = coffeeBeanTable.IsBeanOfTheDay,
+                Cost = coffeeBeanTable.Cost,
+                Image = coffeeBeanTable.Image,
+                Colour = coffeeBeanTable.Colour,
+                Name = coffeeBeanTable.Name,
+                Description = coffeeBeanTable.Description,
+                Country = coffeeBeanTable.Country
+            };
+        }
     }
 }
