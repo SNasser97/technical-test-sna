@@ -30,7 +30,7 @@ Included GithubActions for simple CI/CD which builds and runs defined tests in t
 1. Run `docker compose up -d` to start the MySql database
 1. Ensure Mysql container and relevant containers are up and running
 1. Once service is running migration scripts should have been applied to generate the database and CoffeeBean table
-<br><br> Note: **Running the service will seed test data supplied from AllTheBeans.json file**
+<br><br> Note: **Running the service will seed test data supplied from AllTheBeans.json file located in `src/all-the-beans.Data/Utilities/`**
 
 1. Visit http://localhost:8081 to view database in phpmyadmin
 1. Run the application using `dotnet run --project src/all-the-beans.Api/all-the-beans.Api.csproj` or from your IDE
