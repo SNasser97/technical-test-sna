@@ -20,5 +20,10 @@ namespace all_the_beans.Entities.Repositories.CoffeeBeanRepository
         /// <param name="itemsPerPage">The items per page to specify</param>
         /// <param name="filters">The query filters to specify</param>
         Task<IEnumerable<CoffeeBean>> GetAsync(int pageNumber, int itemsPerPage, IDictionary<string,string> filters);
+
+        /// <summary>
+        /// Retrieves bean of the day.
+        /// </summary>
+        Task<CoffeeBean> GetBeanOfTheDayAsync();
     }
 }

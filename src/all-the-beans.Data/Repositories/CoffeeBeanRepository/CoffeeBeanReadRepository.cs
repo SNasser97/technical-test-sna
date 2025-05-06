@@ -3,7 +3,6 @@ using all_the_beans.Data.Tables.CoffeeBeanTable;
 using all_the_beans.Entities.Entity.CoffeeBean;
 using all_the_beans.Entities.Repositories.CoffeeBeanRepository;
 using Microsoft.EntityFrameworkCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace all_the_beans.Data.Repositories.CoffeeBeanRepository
 {
@@ -42,6 +41,11 @@ namespace all_the_beans.Data.Repositories.CoffeeBeanRepository
                .ToListAsync();
 
             return coffeeBeanTableRecords.Select(CoffeeBeanTable.ToCoffeeBeanEntity);
+        }
+
+        public Task<CoffeeBean> GetBeanOfTheDayAsync()
+        {
+            throw new NotImplementedException();
         }
 
         private IQueryable<CoffeeBeanTable> GetFilters(IQueryable<CoffeeBeanTable> query, IDictionary<string, string> filters)
