@@ -53,7 +53,7 @@ Included GithubActions for simple CI/CD which builds and runs defined tests in t
 1. Ensure service is running (follow steps above)
 1. When running the service some data will be seeded
 1. One of the coffeebeans will be already a BeanOfTheDay with a timestamp set to 24 hours ago
-1. Use Postman to send a GET request to the endpoint: `https://localhost:7280/api/BeanOfTheDay` or `http://localhost:5053/api/BeanOfTheDay`
+1. Use Postman to send a GET request to the endpoint: `https://localhost:7280/v1/api/coffeebeans/bean-of-the-day` or `http://localhost:5053/v1/api/coffeebeans/bean-of-the-day`
 1. The response should then return a random Coffeebean from the database
 1. Any further responses should keep returning the same Coffeebean until the 24 hours has passed
 1. To test if a new random CoffeeBean is selected can edit the timestamp in phpmyadmin or MySQL WorkBench 
