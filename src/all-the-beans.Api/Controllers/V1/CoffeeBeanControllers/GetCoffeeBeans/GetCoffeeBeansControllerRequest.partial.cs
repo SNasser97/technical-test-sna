@@ -7,7 +7,7 @@ namespace all_the_beans.Api.Controllers.V1.CoffeeBeanControllers.GetCoffeeBeans
     {
         public static GetCoffeeBeansQueryRequest ToQueryRequest(GetCoffeeBeansControllerRequest request)
         {
-            return new GetCoffeeBeansQueryRequest(request.Page, request.ItemsPerPage);
+            return new GetCoffeeBeansQueryRequest(request.Page, request.ItemsPerPage, request.Colour);
         }
     }
 }
