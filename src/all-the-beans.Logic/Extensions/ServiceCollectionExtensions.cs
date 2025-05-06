@@ -7,6 +7,8 @@ using all_the_beans.Logic.Commands.V1.CoffeeBeanCommands.UpdateCoffeeBean;
 using all_the_beans.Logic.Queries.V1.CoffeeBeanQueries.GetCoffeeBeansQuery;
 using Microsoft.Extensions.DependencyInjection;
 using all_the_beans.Entities.Queries.V1.GetCoffeeBeansQuery;
+using all_the_beans.Entities.Queries.V1.GetBeanOfTheDay;
+using all_the_beans.Logic.Queries.V1.CoffeeBeanQueries.GetBeanOfTheDay;
 
 namespace all_the_beans.Logic.Extensions
 {
@@ -23,6 +25,7 @@ namespace all_the_beans.Logic.Extensions
         public static IServiceCollection AddCoffeeBeanQueries(this IServiceCollection services)
         {
             services.AddScoped<IGetCoffeeBeansQuery, GetCoffeeBeansQuery>();
+            services.AddScoped<IGetBeanOfTheDayQuery, GetBeanOfTheDayQuery>();
             return services;
         }
     }

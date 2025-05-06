@@ -4,4 +4,9 @@
     {
         Task<TQueryResponse> ExecuteAsync(TQueryRequest request);
     }
+
+    public interface IQuery<TResponse>
+    {
+        Task<TResponse> ExecuteAsync();
+    }
 }

@@ -109,11 +109,28 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Get BeanOfTheDay",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}{{port}}{{baseCoffeeBeanUrl}}/bean-of-the-day",
+									"host": [
+										"{{baseUrl}}{{port}}{{baseCoffeeBeanUrl}}"
+									],
+									"path": [
+										"bean-of-the-day"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
 			],
-			"description": "CRUD operations against coffeebeans:\n\n- POST - Create CoffeeBean\n    \n- PUT - Update CoffeeBean\n    \n- DELETE - Delete CoffeeBean\n    \n- GET - Get CoffeeBeans"
+			"description": "CRUD operations against coffeebeans:\n\n- POST - Create CoffeeBean\n    \n- PUT - Update CoffeeBean\n    \n- DELETE - Delete CoffeeBean\n    \n- GET - Get CoffeeBeans\n    \n- GET - Get BeanOfTheDay"
 		}
 	]
 }

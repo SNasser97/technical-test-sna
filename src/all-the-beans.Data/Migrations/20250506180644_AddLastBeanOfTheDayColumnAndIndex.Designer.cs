@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using all_the_beans.Data.Context;
 
@@ -10,9 +11,11 @@ using all_the_beans.Data.Context;
 namespace all_the_beans.Data.Migrations
 {
     [DbContext(typeof(CoffeeBeanDbContext))]
-    partial class CoffeeBeanDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250506180644_AddLastBeanOfTheDayColumnAndIndex")]
+    partial class AddLastBeanOfTheDayColumnAndIndex
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

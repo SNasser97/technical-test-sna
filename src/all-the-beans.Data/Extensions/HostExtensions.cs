@@ -41,7 +41,9 @@ namespace all_the_beans.Data.Extensions
                     Colour = jsonEntity.Colour,
                     Name = jsonEntity.Name,
                     Description = jsonEntity.Description,
-                    Country = jsonEntity.Country
+                    Country = jsonEntity.Country,
+                    // Assume the its been 24 hours since the last bean of the day
+                    LastBeanOfTheDayTime = jsonEntity.IsBeanOfTheDay ? DateTimeOffset.Now.AddHours(-24).ToUnixTimeMilliseconds() : null,
                 });
 
                 try
