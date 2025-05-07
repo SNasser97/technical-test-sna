@@ -18,7 +18,6 @@ namespace all_the_beans.Data.Repositories.CoffeeBeanRepository
         /// <inherit doc/>
         public async Task<IEnumerable<CoffeeBean>> GetAsync(int pageNumber, int itemsPerPage)
         {
-            // pass empty dictionary to avoid null check in GetAsync(int, int, IDictionary<string,string> filters
             return await this.GetAsync(pageNumber, itemsPerPage);
         }
 
